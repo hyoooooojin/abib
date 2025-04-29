@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Abib</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: "Roboto", sans-serif;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      width: 300vw;
+      height: 100vh;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .section {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .section h1 {
+      font-size: clamp(240px, 45vw, 502px);
+      line-height: 0.65;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .section2 {
+
+    }
+
+    .items{
+      position: absolute;
+      bottom: 15%;
+      left: 10%;
+      display: flex;
+      gap: 10px;
+    }
+
+    .item {
+      width: 160px;
+      height: 160px;
+    }
+
+    .item>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .text {
+      position: absolute;
+      top: 13%;
+      right: 0%;
+      text-align: right;
+      font-size: 10rem;
+      font-weight: bold;
+      line-height: 85%;
+    }
+
+    .section3 {
+      background-image: url(images/section3Bg.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .highlight{
+      position: absolute;
+      top: 25%;
+      left: 10%; 
+    }
+
+    .title {
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin-bottom: 32px;
+    }
+
+    .desc {
+      margin-bottom: 24px;
+    }
+
+    .highlightBtn {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: white;
+      padding: 12px 36px;
+      background-color: black;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+
+    .arrow-button {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: black;
+      border: none;
+      background: transparent;
+      padding: 10px 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .arrow-left {
+      width: 100px;
+      top: 20px;
+      left: 20px;
+      transform: rotate(90deg);
+    }
+
+    .arrow-right {
+      width: 100px;
+      top: 20px;
+      right: 20px;
+      transform: rotate(-90deg);
+    }
+
+    img {
+      width: 100%;
+      
+    }
+
+    .arrow-button:disabled {
+      opacity: 0;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="arrow-button arrow-left" onclick="changeSlide(-1)" id="leftBtn"><img src="images/icon.png"
+      alt=""></button>
+  <button class="arrow-button arrow-right" onclick="changeSlide(1)" id="rightBtn"><img src="images/icon.png"
+      alt=""></button>
+
+  <div class="container" id="slider">
+
+    <section class="section">
+      <h1>Abib</h1>
+    </section>
+
+    <section class="section">
+      <div class="items">
+        <div class="item"><img src="images/Jericho_04.PC_Half-banner_1.jpg" alt=""></div>
+        <div class="item"><img src="images/Jericho_04.PC_Half-banner_1.jpg" alt=""></div>
+        <div class="item"><img src="images/Jericho_04.PC_Half-banner_1.jpg" alt=""></div>
+      </div>
+      <div class="text">
+        <p>true<br/>rose<br/>of<br/>jerico</p>
+      </div>
+    </section>
+
+    <section class="section section3">
+      <div class="highlight">
+        <p class="title">Moisture care</p>
+        <p class="desc">북아프리카와 중동 지역의 사막식물로 물이 없으면 마른 공처럼 오그라들었다가<br/>
+          물을 만나면 다시 살아나는 것처럼 펼쳐지는 특징때문에 부활초라 불리는 <br/>
+          진짜 예리고의 장미는 트레할로스 성분이 수분 함유력을 높여 피부의 촉촉한 수분감을 전달합니다
+        </p>
+        <p class="highlightBtn">제품보러가기</p>
+      </div>
+    </section>
+  
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function updateSlider() {
+      const slider = document.getElementById("slider");
+      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+
+      // 좌우 버튼 활성/비활성 처리
+      document.getElementById("leftBtn").disabled = currentSlide === 0;
+      document.getElementById("rightBtn").disabled = currentSlide === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+
+      if (currentSlide < 0) currentSlide = 0;
+      if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+
+      updateSlider();
+    }
+
+    // 초기 상태 버튼 세팅
+    updateSlider();
+  </script>
+
+</body>
+
+</html>
